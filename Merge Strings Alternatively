@@ -1,0 +1,19 @@
+/*
+Merge strings O(n) solution
+*/
+class Solution {
+public:
+    string mergeAlternately(string word1, string word2) {
+        string word3;
+        int n3,n2,n1=word1.length();
+        n2=word2.length();
+        n3=n1+n2;
+        for(int i=0;i<n3;i++){
+            if(i<n1)
+               word3 += word1[i];
+            if(i<n2)
+                word3 += word2[i];   
+        }
+        return word3;
+    };
+};
