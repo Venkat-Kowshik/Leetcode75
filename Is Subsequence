@@ -1,0 +1,29 @@
+Explanation of the "Is Subsequence" Problem and Solutions
+Introduction & Problem Statement
+Given two strings, s and t, the challenge is to determine if s is a subsequence of t. A subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.
+
+Key Concepts:
+What Makes This Problem Unique?
+String Constraints:
+
+The length of s can range from 0 to 100.
+The length of t can vary between 0 and 10,000.
+Both s and t consist only of lowercase English letters.
+Solution Techniques:
+This problem can be approached using various techniques, including iterative (two-pointers) methods and dynamic programming.
+
+
+*****************************************************************************************
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+    int i=0,j=0;
+        while(i<s.length() && j<t.length()){
+            if(t[j++]==s[i]) i++;
+        }
+        if(i==s.length()) return true;
+        return false;
+
+    }
+    
+};
