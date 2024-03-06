@@ -1,0 +1,49 @@
+
+Given a binary integer number, convert and print its decimal equivalent form.
+The Decimal number of a binary number can be calculated as follows.
+Ex: BN: 101
+DN: 2**2 * 1 + 2**1 * 0 + 2**0 * 1 = 5
+Input Format
+101
+Constraints
+None
+Output Format
+5
+Sample Input 0
+1
+Sample Output 0
+1
+
+******************************************************************************************
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int binary_to_decimal(int binary_number) {
+  int decimal_number = 0, power = 0;
+  while (binary_number > 0) {
+    int last_digit = binary_number % 10;
+    if (last_digit not in {0, 1}) {
+      throw invalid_argument("Invalid binary digit: " + to_string(last_digit));
+    }
+    decimal_number += last_digit * pow(2, power++);
+    binary_number /= 10;
+  }
+  return decimal_number;
+}
+
+int main() {
+  try {
+    int binary_number;
+    cout << "Enter a binary number: ";
+    cin >> binary_number;
+
+    int decimal_number = binary_to_decimal(binary_number);
+    cout << "Decimal equivalent: " << decimal_number << endl;
+  } catch (const invalid_argument& e) {
+    cerr << "Error: " << e.what() << endl;
+  }
+
+  return 0;
+}
