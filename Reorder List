@@ -1,0 +1,45 @@
+You are given the head of a singly linked-list. The list can be represented as:
+
+L0 → L1 → … → Ln - 1 → Ln
+Reorder the list to be on the following form:
+
+L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
+You may not modify the values in the list's nodes. Only nodes themselves may be changed.
+
+*********************************************************************************************************
+#include <stack>
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+        if (!head || !head->next)
+            return;
+
+        std::stack<ListNode*> nodeStack;
+        ListNode* current = head;
+        while (current) {
+            nodeStack.push(current);
+            current = current->next;
+        }
+
+        current = head;
+        int count = (nodeStack.size() - 1) / 2;
+        while (count-- > 0) {
+            ListNode* nextNode = current->next;
+            ListNode* lastNode = nodeStack.top();
+            nodeStack.pop();
+
+            lastNode->next = nextNode;
+            current->next = lastNode;
+
+            current = nextNode;
+        }
+        if (!nodeStack.empty()) {
+            ListNode* lastNode = nodeStack.top();
+            nodeStack.pop();
+            current->next = lastNode;
+            lastNode->next = nullptr;
+        } else {
+            current->next = nullptr;
+        }
+    }
+};
